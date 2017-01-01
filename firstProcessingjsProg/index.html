@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Processing.js</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="processing.js"></script>
+  </head>
+  
+  <body>
+    <script type="text/processing">
+      void setup() {
+
+        size(window.innerWidth, window.innerHeight);
+
+      }
+
+      void mouseMoved() {
+          background(255, 255, 255);
+          // Two PVectors, one for the mouse location and one for the center of the window
+          var mouse  = new PVector(mouseX, mouseY);
+          var center = new PVector(width/2, height/2);
+          // PVector subtraction!
+          mouse.sub(center);
+          
+          // Draw a line to represent the vector - 
+          // Simplify drawing it by first translating to center
+          // and drawing the line from there
+          pushMatrix();
+          translate(width/2, height/2);
+          stroke(255, 0, 0);
+          strokeWeight(1);
+          line(0, 0, mouse.x, mouse.y);
+          popMatrix();
+      }
+
+
+
+      void mouseOut() {
+        background(255, 255, 255);
+      }
+    </script>
+    <canvas></canvas>
+  </body>
+</html>
